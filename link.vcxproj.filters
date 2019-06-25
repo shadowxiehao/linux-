@@ -18,17 +18,31 @@
     <ClCompile Include="struct.h">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="struct_do.cpp">
+    <ClCompile Include="first.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="first.cpp">
+    <ClCompile Include="struct_do.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main_menu.cpp">
+    <ClCompile Include="main_menu.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="show.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="animation.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="init.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globe.c">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

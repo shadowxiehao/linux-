@@ -5,8 +5,9 @@
 
 void main_menu();
 void first();
+int WINAPI animate(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow);
 
-void main()
+void main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
 {
     system("color f0\n");
     while (1)
@@ -16,9 +17,9 @@ void main()
         scanf_s("%d", &k);
         switch (k)
         {
-        //case 10:system("cls"); initial(); save(); break;
+        case 10:system("cls");  break;
         case 1:system("cls"); first(); break;
-        //case 2:system("cls"); change(); break;
+        case 2:system("cls"); animate(hInstance,hPrevInstance,lpCmdLine, iCmdShow); break;
         //case 3:system("cls"); open(); display(); break;
         //case 4:system("cls"); open(); order(); break;
         //case 5:system("cls"); open(); statistics(); break;
@@ -27,6 +28,6 @@ void main()
         default: {system("cls"); printf("Please try again!"); break; }
         }
         printf("\n\t\t\t按任意键返回");
-        getch();
+        _getch();
     }
 }

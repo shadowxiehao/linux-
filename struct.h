@@ -1,10 +1,9 @@
-#ifndef _STRUCT_H
+#ifndef _STRUCT_H//防止重复引用
 #define _STRUCT_H
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
-#include<time.h>
-#define stack_init_size 100//栈的初始化大小为100个单位
+#define stack_init_size 11//栈的初始化大小为11个单位
 #define stackincrement 10
 #endif
 

@@ -15,6 +15,8 @@ int judge(struct stack* s); //判断栈是否为空
 void travelstack(struct stack* s);//遍历栈
 struct block* assign(struct block* head, struct stack* s, int record[100], int file[100][10], int n);//申请分配块
 struct block* callback(struct block* head, struct stack* s, int record[100], int file[100][10]);//回收
+void print_linked(struct block* head);//打印链表
+void print_linked_full(struct block* head);//完整打印链表
 
 void first()
 {
@@ -31,31 +33,17 @@ void first()
     print(head);
     printf("\n");
     srand(time(NULL));//用于随机函数
-    for (i = 1; i <= 100; i++)       //分配和回收,前半期申请居多
-    {
-        n = rand() % 10 + 1;//随机生成1~10的数			
-        if (n >= 3)
-        {
-            if ((gettop(ps) < n) & (p == NULL)) { i--; continue; }
-            //如果100块都用完了，就不分配，继续循环	
-            head = assign(p, ps, record, file, n);//分配
-            p = head;
-        }
-        else
-        {
-            p = callback(head, ps, record, file);//回收
-            head = p;
-        }
-    }
-    for (i = 1; i <= 100; i++)       //分配和回收，后半期回收居多
+
+    for (i = 1; i <= 5; i++)       //分配和回收，后半期回收居多
     {
         n = rand() % 10 + 1;//随机生成1~10的数
-        if (n >= 5)
+        printf("第%d次,%d\n",i,n);
+        if (n >= 4)
         {
 
-            if ((gettop(ps) < n) & (p == NULL)) { i--; continue; }
+            if ((gettop(ps) < n) & (p == NULL)) { i--; printf("重来\n"); continue; }
 
-            head = assign(p, ps, record, file, n);//分配
+            head = assign(p, ps, record, file, 10);//分配
             p = head;
 
         }
@@ -64,10 +52,18 @@ void first()
             p = callback(head, ps, record, file);//回收
             head = p;
         }
+        printf("哈%d次,%d done\n",i, n);
+        printf("\n");
+        print(head);
+        printf("\n");
+        travelstack(ps);
+        printf("\n");
+        print_linked(head);
     }
     printf("所有请求完成后，磁盘中空闲的块号有：\n\n");
     print(head);
     printf("\n");
     travelstack(ps);
+    print_linked_full(head);
 }
 

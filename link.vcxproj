@@ -80,6 +80,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <Manifest>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -123,11 +126,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="main_menu.cpp" />
+    <ClCompile Include="animation.c" />
+    <ClCompile Include="init.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="main_menu.c" />
+    <ClCompile Include="show.c" />
     <ClCompile Include="struct.h" />
-    <ClCompile Include="struct_do.cpp" />
-    <ClCompile Include="first.cpp" />
+    <ClCompile Include="struct_do.c" />
+    <ClCompile Include="first.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="globe.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
