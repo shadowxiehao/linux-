@@ -3,9 +3,9 @@
 #include<stdlib.h>
 #include<time.h>
 #include "struct.h"
-#include "globe.c"
+#include "global.c"
 
-struct block* creat(void)   //创建100个编号0~99的块，10块为一组
+struct block* creat( )   //创建100个编号0~99的块，10块为一组
 {
     struct block* head;
     struct block* p1, * p2;
@@ -76,33 +76,46 @@ int judge(struct stack* s) //判断栈是否为空
     else return 1;
 }
 
-struct block* assign(struct block* head, struct stack* s, int record[100], int file[100][10], int n) {//申请分配块
+struct block* assign(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][file_max], int n) {//申请分配块
     struct block* p, * p1;
     struct stack* ps;
-    int i, e = 10, t, j = 0, r = 0, m = 0;
+    int i, e = 0, t, j = 0, r = 0, m = 0;
     ps = s;
     p1 = p = head;
     for (i = 0; i < 100; i++)
         if (record[i] == 0) break; 
     m = i;//记录分配的文件号
     record[m] = 1;
-    printf("分配 file[%d] %d个:", m, n);
+    printf("分配 file[%d] %d个:\n", m, n);
 
     while (n != 0) {
         if (gettop(ps) == 0) { //若栈中没有元素，则将表中的一组入栈，每次入10块
-            printf("将表中一组入栈\n");
+            printf("\n将表中一组入栈");
+            e = 0;
             for (i = 0; i < stack_size; i++) {
-                push(ps, p->num);
-                p1 = p;
-                p = p->next;
-                free(p1);//释放空间
+                if (p != NULL) {
+                    push(ps, p->num);
+                    p1 = p;
+                    p = p->next;
+                    free(p1);//释放空间
+                    e++;
+                }
+                else {
+                    if (e > 0) {
+                        printf("\n检测:这组不足%d个,入栈%d个\n", stack_size, e);
+                    }
+                    else {
+                        printf("空闲栈 和 块组 均无剩余,无法为此文件继续分配!");
+                        return p;
+                    }
+                }
             }
             push(ps, e);//栈顶放着栈中元素个数
         }
         else {  //分配块
             printf("\n直接分配:");
             t = pop(ps);
-            file[m][r++] = pop(ps);//记录块分配给那个文件，哪几块分配给这个文件
+            file[m][r++] = pop(ps);//记录文件m分配到的块
             printf("%d ", file[m][r - 1]);
             if (t != 1)
                 push(ps, t - 1);
@@ -115,39 +128,39 @@ struct block* assign(struct block* head, struct stack* s, int record[100], int f
 }
 
 
-struct block* callback(struct block* head, struct stack* s, int record[100], int file[100][10])
+struct block* callback(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][file_max])
 {
     struct block* p, * p1, * p2, * newhead = NULL;
     struct stack* ps;
-    int i, j, t, m = 101, n = 0;
+    int i, j, t, m = (file_nums + 1), n = 0;
     ps = s;
     p = head;
 
     //判断哪个文件分配了块，找最近的文件，将里面的块回收
-    for (i = 0; i < 100; i++)
+    for (i = 0; i < file_nums; i++)
         if (record[i] == 1) m = i; 
-    if (m!=101)
+    if (m!= (file_nums + 1) )
     {
         record[m] = 0;
     }
-    else if (m == 101) return head;//如果全部文件都还没有申请到块，回收失败，返回
+    else if (m == (file_nums+1)) return head;//如果全部文件都还没有申请到块，回收失败，返回
 
-    for (i = 0; i < 10; i++) if (file[m][i] != 0) n++;
-    printf("回收 file[%d] %d个:", m, n);
-    printf("测试gettop(ps):%d", gettop(ps));
+    for (i = 0; i < file_max; i++) if (file[m][i] != 0) n++;
+    printf("回收 file[%d] %d个:\n", m, n);
     for (i = 0; i < n; i++)
     {
         if (gettop(ps) != 10)//若栈不是满的就入栈
         {
             t = pop(ps);
             push(ps, file[m][i]);//将文件m申请到的块号入栈，记录块号的file[m][i]置零
-            printf("%d ", file[m][i]);
+            printf("回收入栈:%d \n", file[m][i]);
             file[m][i] = 0;
             t++;
             push(ps, t);
 
         }
         else if (gettop(ps) == 10) { //栈满了就创建一个新链表，回收栈里面的块
+            printf("\n栈满,创建新组回收栈中 \n");
             t = pop(ps);
             newhead = p1 = p2 = (struct block*)malloc(sizeof(struct block));
             p1->num = pop(ps);
@@ -168,13 +181,6 @@ struct block* callback(struct block* head, struct stack* s, int record[100], int
                 t--;
             }
             p2->next = NULL; push(ps, t);
-            t = pop(ps);
-            push(ps, file[m][i]);//将文件m申请到的块号入栈，记录块号的file[m][i]置零
-            printf("%d ", file[m][i]);
-            file[m][i] = 0;
-            t++;
-            push(ps, t);
-
             p1 = newhead;//把新建立的表连到原来的表的前面
             p2 = p1->next;
             while (p1->next != NULL)
@@ -184,6 +190,14 @@ struct block* callback(struct block* head, struct stack* s, int record[100], int
             }
             p1->next = head;
             head = newhead;
+            printf("回收栈内块完成! \n\n");
+
+            t = pop(ps);
+            push(ps, file[m][i]);//将文件m申请到的块号入栈，记录块号的file[m][i]置零
+            printf("回收入栈:%d \n", file[m][i]);
+            file[m][i] = 0;
+            t++;
+            push(ps, t);
         }
     }
     printf("\n\n");

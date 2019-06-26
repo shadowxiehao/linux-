@@ -1,4 +1,4 @@
-/*程序功能：点击button按钮弹出输入框的文本*/
+/*程序功能：全图形化交互演示*/
 #include<windows.h>
 
 struct

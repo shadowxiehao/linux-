@@ -126,17 +126,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="draw.c" />
+    <ClCompile Include="active_show.c" />
     <ClCompile Include="animation.c" />
     <ClCompile Include="init.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="main_menu.c" />
+    <ClCompile Include="position.c" />
     <ClCompile Include="show.c" />
     <ClCompile Include="struct.h" />
     <ClCompile Include="struct_do.c" />
-    <ClCompile Include="first.c" />
+    <ClCompile Include="random_show.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="globe.c" />
+    <ClInclude Include="global.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,18 +6,43 @@
 #include<time.h>
 #include "struct.h"
 #endif
-void travelstack(struct stack* s) //遍历栈
+
+void get_position();
+void set_position();
+
+void line1(int num) {//打印多少个"-"
+    for (int i = 0; i < num; i++) {
+        printf("-");
+    }
+    printf("\n");
+}
+void line2(int num) {//打印多少个"|"
+    for (int i = 0; i < num; i++) {
+        printf("|");
+    }
+}
+
+void print_stack(int number) {//根据给的数组打印全部框架+数
+    int count = 0;
+    int num[2] = { 0 };
+    line2(1);
+    printf("%3d", number);
+    line2(1);
+    printf("\n");
+    line1(5);
+}
+
+void travelstack(struct stack* s) //遍历栈并打印
 {
     struct stack f = *s;
     struct stack* ff = &f;//这里ff用来复制s,防止读取时造成s的变化
-    int count = 1;
     int e;//用来输出
-    printf("栈中还有元素:\n");
+    printf("目前空闲栈情况:\n");
+    line1(5);
     while (ff->base != ff->top)
     {
         e = *(--(ff->top));//原为e = *(--(s->top));
-        printf("%d ", e);
-        count++;
+        print_stack(e);
     }
     printf("\n");
 }
@@ -26,12 +51,20 @@ void print(struct block* head)//打印块号
 {
     struct block* p; int n = 0;//n用来每10个换行
     p = head;
+    printf("磁盘中空闲的分组(块)有：\n");
+
     if (head != NULL) {
+        line1(41);
         do
         {
+            line2(1);
             printf("%d ", p->num);
             n++;
-            if (n % 10 == 0)printf("\n");
+            if (n % 10 == 0) {
+                line2(1);
+                printf("\n"); 
+                line1(41);
+            }
             p = p->next;
         } while (p != NULL);
     }

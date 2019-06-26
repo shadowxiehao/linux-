@@ -18,9 +18,6 @@
     <ClCompile Include="struct.h">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="first.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="struct_do.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -39,9 +36,21 @@
     <ClCompile Include="init.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="random_show.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="active_show.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="position.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="draw.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="globe.c">
+    <ClInclude Include="global.c">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
