@@ -1,8 +1,4 @@
 #include<stdio.h>
-#include<malloc.h>
-#include<stdlib.h>
-#include<time.h>
-#include<conio.h>
 #include<Windows.h>
 #include "struct.h"
 #include "global.c"
@@ -11,24 +7,24 @@ struct block* creat(void);   //创建100个编号0~99的块，10块为一组;
 void print(struct block* head);//打印块号;
 //实现顺序栈的操作（栈空判断、出栈、入栈、读取栈顶元素,遍历栈）。
 void initstack(struct stack* s); //栈的初始化
-void push(struct stack* s, int e); //入栈
 int gettop(struct stack* s); //获得栈顶元素
-int pop(struct stack* s); //出栈
-int judge(struct stack* s); //判断栈是否为空
-void travelstack(struct stack* s);//遍历栈
+void travel_stack(struct stack* s);//遍历栈
 struct block* assign(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][10], int n);//申请分配块
 struct block* callback(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][10]);//回收
-void print_linked(struct block* head);//打印链表
-void print_linked_full(struct block* head);//完整打印链表
 void set_position(int x, int y);
 int get_position(int i);
-void set_position(int x, int y);
+void draw_stack(struct stack* s);
 
 void random_show()
 {
+    char c = 'N';
     system("cls");
     printf("欢迎进入随机演示!(每次均会暂停以便查看结果,按任意键即可继续)\n\n");
-    Sleep(1200);
+    printf("是否需要控制台显示的同时进行图形化显示?('Y'/'N' 默认N)\n\n");
+    getchar();//消除干扰输入
+    scanf_s("%c", &c);
+
+    Sleep(200);
     system("cls");
     //各种栈和块的结构体申明
     struct stack s;
@@ -95,7 +91,10 @@ void random_show()
             printf("前半段第%d次回收完成\n", i);
         }
         printf("\n");
-        travelstack(ps);
+        travel_stack(ps);
+        if (c == 'Y'| c == 'y') {//图形化显示确认
+            draw_stack(ps);
+        }
         printf("\n");
         print(head);
         printf("\n");
@@ -136,7 +135,10 @@ void random_show()
             printf("后半段第%d次回收完成\n", i);
         }
         printf("\n");
-        travelstack(ps);
+        travel_stack(ps);
+        if (c == 'Y' | c == 'y') {//图形化显示确认
+            draw_stack(ps);
+        }
         printf("\n");
         print(head);
         printf("\n");
@@ -148,7 +150,10 @@ void random_show()
         _getch();//等待任意键继续
         set_position(po2[0], po2[1]);
     }
-    travelstack(ps);
+    travel_stack(ps);
+    if (c == 'Y' | c == 'y') {//图形化显示确认
+        draw_stack(ps);
+    }
     printf("\n");
     print(head);
     //print_linked_full(head);打印外存

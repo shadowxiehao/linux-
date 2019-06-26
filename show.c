@@ -3,7 +3,6 @@
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
-#include<time.h>
 #include "struct.h"
 #endif
 
@@ -27,18 +26,19 @@ void print_stack(int number) {//根据给的数组打印全部框架+数
     int num[2] = { 0 };
     line2(1);
     printf("%3d", number);
+    printf("  ");
     line2(1);
     printf("\n");
-    line1(5);
+    line1(7);
 }
 
-void travelstack(struct stack* s) //遍历栈并打印
+void travel_stack(struct stack* s) //遍历栈并打印
 {
     struct stack f = *s;
     struct stack* ff = &f;//这里ff用来复制s,防止读取时造成s的变化
     int e;//用来输出
     printf("目前空闲栈情况:\n");
-    line1(5);
+    line1(7);
     while (ff->base != ff->top)
     {
         e = *(--(ff->top));//原为e = *(--(s->top));
@@ -85,7 +85,7 @@ void print_linked(struct block* head) {//打印链表
     printf("\n");
 }
 
-void print_linked_full(struct block* head) {//完整打印链表
+void print_linked_full(struct block* head) {//完整打印组,用于确保每组开头存入下组的前10个块号
     struct block* p, * p1, * p2;
     printf("\n外存链表:");
     p1 = head;//把新建立的表连到原来的表的前面

@@ -1,7 +1,5 @@
 #include<stdio.h>
-#include<malloc.h>
 #include<stdlib.h>
-#include<time.h>
 #include<conio.h>
 #include<Windows.h>
 #include "struct.h"
@@ -11,15 +9,11 @@ struct block* creat(void);   //创建100个编号0~99的块，10块为一组;
 void print(struct block* head);//打印块号;
 //实现顺序栈的操作（栈空判断、出栈、入栈、读取栈顶元素,遍历栈）。
 void initstack(struct stack* s); //栈的初始化
-void push(struct stack* s, int e); //入栈
-int gettop(struct stack* s); //获得栈顶元素
-int pop(struct stack* s); //出栈
-int judge(struct stack* s); //判断栈是否为空
-void travelstack(struct stack* s);//遍历栈
+void travel_stack(struct stack* s);//遍历栈
 struct block* assign(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][10], int n);//申请分配块
 struct block* callback(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][10]);//回收
-void print_linked(struct block* head);//打印链表
-void print_linked_full(struct block* head);//完整打印链表
+//void print_linked(struct block* head);//打印链表
+//void print_linked_full(struct block* head);//完整打印链表
 int get_position(int i);
 void set_position(int x, int y);
 void active_menu1();
@@ -50,7 +44,7 @@ int active_callback() {
     head = p;
 }
 int active_travelstack(){
-    travelstack(ps);
+    travel_stack(ps);
     draw_stack(ps);
     return 0;
 }
@@ -63,7 +57,7 @@ void active_show()
     system("color f0\n");
     system("cls");
     printf("欢迎进入主动演示!\n\n");
-    Sleep(1200);
+    Sleep(850);
     system("cls");
 
     int n = 0, i = 0, m = 0, j = 0;//用于计数等的变量
@@ -76,22 +70,24 @@ void active_show()
     p = head = creat();
     printf("\n");
 
-    while (1) {
+    while (1) {//主动演示主菜单
             int k = 10, f = 0;
 
             po1[0] = get_position(0); po1[1] = get_position(1);
             active_menu1();
             po2[0] = get_position(0); po2[1] = get_position(1);
-            scanf_s("%d", &k);
-
+            //scanf_s("%d", &k);
+            if ((k = _getch()) == '\n') {//防干扰且无需回车式读入k
+                k = _getch();
+            }
             switch (k)
             {
-            case 1:  f=active_menu2(po1[1]);  active_assign(f); break;
-            case 2: active_menu3(po1[1]); active_callback(); break;
-            case 3: active_menu4(po1[1]); active_travelstack(); break;
-            case 4: active_menu4(po1[1]); active_print(); break;
-            case 0:return;
-            default: {break; }
+            case '1':  f=active_menu2(po1[1]);  active_assign(f); break;
+            case '2': active_menu3(po1[1]); active_callback(); break;
+            case '3': active_menu4(po1[1]); active_travelstack(); break;
+            case '4': active_menu4(po1[1]); active_print(); break;
+            case '0':return;
+            default: {active_menu4(po1[1]); break; }
             }
 
             printf("\n\t\t\t按任意键继续");

@@ -8,6 +8,7 @@ LOGFONT f;
 
 void refont() {
     gettextstyle(&f);						// 获取当前字体设置
+    setbkmode(TRANSPARENT);//设置字体背景透明
     _tcscpy_s(f.lfFaceName, _T("黑体"));    // 设置字体为“黑体”
     //f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿 
     f.lfHeight = 25;						// 设置字体高度为 48
@@ -40,11 +41,10 @@ extern "C" {//使C++兼容C
     }
 
     void draw_stack(struct stack* s) {
-        initgraph(200, 440);//初始化窗口
+        initgraph(200, 440,SHOWCONSOLE);//初始化窗口大小,同时显示控制台
         setbkcolor(WHITE);
         cleardevice();
         setcolor(BLACK);
-        setbkmode(TRANSPARENT);
         refont();//设置字体
 
         setlinecolor(DARKGRAY);
