@@ -26,6 +26,7 @@ void active_menu1();
 int active_menu2(int q);
 int active_menu3(int q);
 int active_menu4(int q);
+void draw_stack(struct stack* s);//绘图_栈
 
 //各种栈和块的结构体申明
 struct stack s;
@@ -50,6 +51,7 @@ int active_callback() {
 }
 int active_travelstack(){
     travelstack(ps);
+    draw_stack(ps);
     return 0;
 }
 int active_print() {

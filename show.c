@@ -7,8 +7,8 @@
 #include "struct.h"
 #endif
 
-void get_position();
-void set_position();
+int get_position(int i);
+void set_position(int x, int y);
 
 void line1(int num) {//打印多少个"-"
     for (int i = 0; i < num; i++) {

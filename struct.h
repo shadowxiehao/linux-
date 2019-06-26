@@ -16,7 +16,3 @@ struct block        //成组链接的数据结构
     int num;
     struct block* next;
 };
-struct file        //申请块的文件的数据结构
-{
-    int *stacks;
-}*files;

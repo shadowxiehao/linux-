@@ -3,7 +3,10 @@
 #include "struct.h"
 #include "global.c"
 
-int gettop(struct stack* s);
+void push(struct stack* s, int e); //入栈
+int gettop(struct stack* s); //获得栈顶元素
+int pop(struct stack* s); //出栈
+int judge(struct stack* s); //判断栈是否为空
 
 
 void initstack(struct stack* s) //栈的初始化

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-int draw() {
+int draw(){
     int Row = 10;//5*2
     int Colum = 10;
     int width = 80;

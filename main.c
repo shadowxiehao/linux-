@@ -8,9 +8,7 @@ void main_menu();
 void random_show();
 void active_show();
 int WINAPI animate(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow);
-
-stack_size = 10;//栈初始大小
-
+stack_size=10;//栈初始大小
 
 void main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
 {
