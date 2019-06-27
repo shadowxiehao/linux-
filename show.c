@@ -47,7 +47,7 @@ void travel_stack(struct stack* s) //遍历栈并打印
     printf("\n");
 }
 
-void print(struct block* head)//打印块号
+void print_block(struct block* head)//打印块号
 {
     struct block* p; int n = 0;//n用来每10个换行
     p = head;

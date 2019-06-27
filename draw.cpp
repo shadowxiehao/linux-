@@ -25,6 +25,26 @@ void reouttext(int m) {//输出数字
 
 
 extern "C" {//使C++兼容C
+    void draw_block_help(struct block* head)//打印块号
+    {
+        struct block* p; int n = 0;//n用来每10个换行
+        p = head;
+        int count1 = 0,count2=0;//行与列计数
+
+        if (head != NULL) {
+            do
+            {
+                moveto((40 * count1++) + 10, 10 + (40 * count2));
+                reouttext(p->num);
+                n++;
+                if (n % 10 == 0) {
+                    count2++;
+                    count1 = 0;
+                }
+                p = p->next;
+            } while (p != NULL);
+        }
+    }
     void draw_stack_help(struct stack* s) //遍历栈并打印
     {
         struct stack f = *s;
@@ -40,7 +60,7 @@ extern "C" {//使C++兼容C
         printf("\n");
     }
 
-    void draw_stack(struct stack* s) {
+    void draw_stack(struct stack* s) {//绘图_栈
         initgraph(200, 440,SHOWCONSOLE);//初始化窗口大小,同时显示控制台
         setbkcolor(WHITE);
         cleardevice();
@@ -67,5 +87,57 @@ extern "C" {//使C++兼容C
         _getch();					//按任意键
         closegraph();			 //关闭绘图窗口
         //system("pause");
+    }
+    void draw_block(struct block* head) {//绘图_块组
+        initgraph(400, 400, SHOWCONSOLE);//初始化窗口大小,同时显示控制台
+        setbkcolor(WHITE);
+        cleardevice();
+        setcolor(BLACK);
+        refont();//设置字体
+
+        setlinecolor(DARKGRAY);
+        setlinestyle(PS_SOLID | PS_JOIN_BEVEL, 2);
+
+        setfillcolor(0xFFDEAD);////第1次填色
+        fillrectangle(0, 0, 400, 40);
+
+        setfillcolor(0xEE6AA7);//2
+        fillrectangle(0, 40, 400, 80);
+
+        setfillcolor(0xFFB6C1);//3
+        fillrectangle(0, 80, 400, 120);
+
+        setfillcolor(0xEE00EE);//4
+        fillrectangle(0, 120, 400, 160);
+
+        setfillcolor(0x00EE00);//5
+        fillrectangle(0, 160, 400, 200);
+
+        setfillcolor(0xFF69B4);//6
+        fillrectangle(0, 200, 400, 240);
+
+        setfillcolor(0xFF3030);//7
+        fillrectangle(0, 240, 400, 280);
+
+        setfillcolor(0xADFF2F);//8
+        fillrectangle(0, 280, 400, 320);
+
+        setfillcolor(0xFFB90F);//第9次填色
+        fillrectangle(0, 320, 400, 360);
+
+        setfillcolor(0xFF00FF);//第10次填色
+        fillrectangle(0, 360, 400, 400);
+
+        for (int i = 40; i <= 400; i += 40) {
+            line(0, i, 400, i);
+        }
+        for (int i = 40; i <= 400; i += 40) {
+            line(i, 0, i, 400);
+        }
+
+        draw_block_help(head);
+
+        _getch();					//按任意键
+        closegraph();			 //关闭绘图窗口
     }
 }

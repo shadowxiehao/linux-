@@ -4,7 +4,7 @@
 #include "global.c"
 
 struct block* creat(void);   //创建100个编号0~99的块，10块为一组;
-void print(struct block* head);//打印块号;
+void print_block(struct block* head);//打印块号;
 //实现顺序栈的操作（栈空判断、出栈、入栈、读取栈顶元素,遍历栈）。
 void initstack(struct stack* s); //栈的初始化
 int gettop(struct stack* s); //获得栈顶元素
@@ -13,7 +13,8 @@ struct block* assign(struct block* head, struct stack* s, int record[file_nums],
 struct block* callback(struct block* head, struct stack* s, int record[file_nums], int file[file_nums][10]);//回收
 void set_position(int x, int y);
 int get_position(int i);
-void draw_stack(struct stack* s);
+void draw_stack(struct stack* s);//绘图
+void draw_block(struct block* head);//绘图
 
 void random_show()
 {
@@ -21,8 +22,9 @@ void random_show()
     system("cls");
     printf("欢迎进入随机演示!(每次均会暂停以便查看结果,按任意键即可继续)\n\n");
     printf("是否需要控制台显示的同时进行图形化显示?('Y'/'N' 默认N)\n\n");
-    getchar();//消除干扰输入
-    scanf_s("%c", &c);
+    if ((c = _getch()) == '\n') {//防干扰且无需回车式读入c
+        c = _getch();
+    }
 
     Sleep(200);
     system("cls");
@@ -42,7 +44,7 @@ void random_show()
     initstack(ps);//初始化堆栈
     p = head = creat();
     printf("开始时:");
-    print(head);
+    print_block(head);
     printf("\n");
     printf("进行随机分配回收,前半段主随机分配,后半段主随机回收\n\n");
 
@@ -94,9 +96,10 @@ void random_show()
         travel_stack(ps);
         if (c == 'Y'| c == 'y') {//图形化显示确认
             draw_stack(ps);
+            draw_block(head);
         }
         printf("\n");
-        print(head);
+        print_block(head);
         printf("\n");
         
         po2[0] = get_position(0);
@@ -138,9 +141,10 @@ void random_show()
         travel_stack(ps);
         if (c == 'Y' | c == 'y') {//图形化显示确认
             draw_stack(ps);
+            draw_block(head);
         }
         printf("\n");
-        print(head);
+        print_block(head);
         printf("\n");
 
         po2[0] = get_position(0);
@@ -153,9 +157,10 @@ void random_show()
     travel_stack(ps);
     if (c == 'Y' | c == 'y') {//图形化显示确认
         draw_stack(ps);
+        draw_block(head);
     }
     printf("\n");
-    print(head);
+    print_block(head);
     //print_linked_full(head);打印外存
     printf("\n\t随机演示完成");
 

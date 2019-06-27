@@ -6,7 +6,7 @@
 #include "global.c"
 
 struct block* creat(void);   //创建100个编号0~99的块，10块为一组;
-void print(struct block* head);//打印块号;
+void print_block(struct block* head);//打印块号;
 //实现顺序栈的操作（栈空判断、出栈、入栈、读取栈顶元素,遍历栈）。
 void initstack(struct stack* s); //栈的初始化
 void travel_stack(struct stack* s);//遍历栈
@@ -21,6 +21,7 @@ int active_menu2(int q);
 int active_menu3(int q);
 int active_menu4(int q);
 void draw_stack(struct stack* s);//绘图_栈
+void draw_block(struct block* head);//绘图 组
 
 //各种栈和块的结构体申明
 struct stack s;
@@ -49,7 +50,8 @@ int active_travelstack(){
     return 0;
 }
 int active_print() {
-    print(head);
+    print_block(head);
+    draw_block(head);
 }
 
 void active_show()
