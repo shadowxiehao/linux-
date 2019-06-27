@@ -1,3 +1,4 @@
+/*两主要结构体存放处*/
 #ifndef _STRUCT_H//防止重复引用
 #define _STRUCT_H
 #define stack_init_size 11//栈的初始化大小为11个单位

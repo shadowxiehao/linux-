@@ -1,3 +1,4 @@
+/*主动演示功能的核心*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>

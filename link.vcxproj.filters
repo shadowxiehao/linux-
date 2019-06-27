@@ -30,9 +30,6 @@
     <ClCompile Include="position.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main_menu.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="draw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

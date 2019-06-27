@@ -1,3 +1,4 @@
+/*随机演示功能的核心*/
 #include<stdio.h>
 #include<Windows.h>
 #include "struct.h"

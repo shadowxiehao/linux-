@@ -135,7 +135,7 @@
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="init.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="main_menu.c" />
+    <ClCompile Include="menu.c" />
     <ClCompile Include="position.c" />
     <ClCompile Include="show.c" />
     <ClCompile Include="struct.h" />

@@ -1,3 +1,5 @@
+/*主函数入口*/
+
 #include<stdio.h>
 #include<string.h>
 #include<conio.h>
@@ -27,7 +29,7 @@ void main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCm
         case '2':system("cls"); random_show(); break;
         case '3':system("cls"); animate(hInstance, hPrevInstance, lpCmdLine, iCmdShow); break;
 
-        case 0:return;
+        case '0':return;
         default: {system("cls"); printf("Please try again!"); break; }
         }
         printf("\n\t\t\t按任意键返回");

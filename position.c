@@ -1,3 +1,4 @@
+/*负责调整控制台光标位置等友好化演示函数*/
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>

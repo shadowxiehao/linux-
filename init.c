@@ -1,3 +1,5 @@
+/*主要负责初始化结构体并将其设置成空闲栈与分组的块的样式*/
+
 #include<stdio.h>
 #include<stdlib.h>
 #include "struct.h"

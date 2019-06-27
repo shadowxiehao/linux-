@@ -1,3 +1,5 @@
+/*主要负责与结构体相关的操作,并是分配与回收函数的核心区*/
+
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>

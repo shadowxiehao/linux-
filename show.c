@@ -1,3 +1,5 @@
+/*主要负责在控制台进行相关展示*/
+
 #ifndef _STRUCT_H//防止重复引用
 #define _STRUCT_H
 #include<stdio.h>

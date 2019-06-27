@@ -1,3 +1,5 @@
+/*主要负责绘图,这一块进行了兼容性处理,使其C++库得以在C中调用*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <graphics.h>
@@ -24,7 +26,7 @@ void reouttext(int m) {//输出数字
 }
 
 
-extern "C" {//使C++兼容C
+extern "C" {//使C++兼容C,能够从C进行调用
     void draw_block_help(struct block* head)//打印块号
     {
         struct block* p; int n = 0;//n用来每10个换行
